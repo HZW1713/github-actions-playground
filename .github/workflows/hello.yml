@@ -1,11 +1,11 @@
 name: Hello world
 
 on:
-    push:
+  push:
 
 jobs:
-    hello_world:
-        runs-on: ubuntu-latest
-        steps:
-            - run: |
-                echo "Hello world!"
+  hello_world:
+    runs-on: ubuntu-latest
+    steps:
+      - run: |
+          echo "Hello world!"
