@@ -1,15 +1,19 @@
 name: JSON Test
 
 on:
-  push:
-    branches:
-      - test/actions
+  workflow_dispatch:
+    inputs:
+      json_data:
+        description: 'JSON文字列'
+        required: true
+        type: string
+        default: 'none'
 
 jobs:
   print:
     runs-on: ubuntu-latest
     env:
-      data: '[{"a":"1"},{"b":"2"},{"c":"3"}]'
+      data: ${{ inputs.json_data}}
     steps:
       - run: |
           echo $data | jq .

@@ -1,12 +1,34 @@
 name: Hello world
-# foo
+
 on:
-  # push:
-  pull_request:
+  push:
+    branches:
+      - test/actions
 
 jobs:
   hello_world:
     runs-on: ubuntu-latest
     steps:
-      - run: |
-          echo "Hello world!"
+      - name: Generate token
+        id: app-token
+        uses: actions/create-github-app-token@v2
+        with:
+          app-id: ${{ vars.CICD_APP_ID }}
+          private-key: ${{ secrets.CICD_APP_SECRET }}
+
+      - env:
+          json_input: '[{"a":"1"},{"b":"2"},{"c":"3"}]'
+        run: |
+          curl -L \
+            -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${{ steps.app-token.outputs.token }}" \
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            https://api.github.com/repos/HZW1713/github-actions-playground/actions/workflows/json.yml/dispatches \
+            -d '{
+              "ref": "test/actions",
+              "inputs": {
+                "json_data": ${{ toJson(env.json_input) }}
+              }
+            }'
+
