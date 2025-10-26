@@ -8,6 +8,8 @@ on:
 jobs:
   hello_world:
     runs-on: ubuntu-latest
+    env:
+      json_input: '[{"a":"1"},{"b":"2"},{"c":"3"}]'
     steps:
       - name: Generate token
         id: app-token
@@ -16,9 +18,7 @@ jobs:
           app-id: ${{ vars.CICD_APP_ID }}
           private-key: ${{ secrets.CICD_APP_SECRET }}
 
-      - env:
-          json_input: '[{"a":"1"},{"b":"2"},{"c":"3"}]'
-        run: |
+      - run: |
           curl -L \
             -X POST \
             -H "Accept: application/vnd.github+json" \
