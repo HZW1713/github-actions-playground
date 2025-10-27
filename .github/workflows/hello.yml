@@ -28,7 +28,7 @@ jobs:
             -d '{
               "ref": "test/actions",
               "inputs": {
-                "json_data": ${{ toJson(env.json_input) }}
+                "json_data": ${{ env.json_input }}
               }
             }'
 
