@@ -9,7 +9,7 @@ jobs:
   hello_world:
     runs-on: ubuntu-latest
     env:
-      json_input: '[{"a":"1"},{"b":"2"},{"c":"3"}]'
+      json_input: ${{ toJson(fromJson('[{"a":"1"},{"b":"2"},{"c":"3"}]')) }}
     steps:
       - name: Generate token
         id: app-token
