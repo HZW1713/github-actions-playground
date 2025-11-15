@@ -19,3 +19,8 @@ jobs:
           payload: |
             channel: C04PGT140DD
             text: "howdy <@U04PGT12X1V>! [マニュアル](https://example.com)"
+            blocks:
+              - type: "section"
+                text:
+                  type: "mrkdwn"
+                  text: "New Paid Time Off request from <example.com|Fred Enriquez>\n\n<https://example.com|View request>"
