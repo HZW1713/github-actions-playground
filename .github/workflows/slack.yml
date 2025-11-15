@@ -18,4 +18,4 @@ jobs:
           token: ${{ secrets.SLACK_APP_SECRET }}
           payload: |
             channel: C04PGT140DD
-            text: "howdy <@U04PGT12X1V>! [マニュアル](https://example.com)"
+            markdow_text: "howdy <@U04PGT12X1V>! [マニュアル](https://example.com)"
