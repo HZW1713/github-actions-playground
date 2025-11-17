@@ -21,4 +21,5 @@ jobs:
             text: |
               こんにちは
               おげんきですか。
+              - これはリストです
               <https://google.com|Google>
