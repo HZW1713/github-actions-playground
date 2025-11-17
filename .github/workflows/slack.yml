@@ -12,6 +12,7 @@ jobs:
         id: gen_message
         run: |
           message=`cat<<-EOT
+            `コードブロック`
             こんにちは
             おげんきですか。
             ● これはリストです
