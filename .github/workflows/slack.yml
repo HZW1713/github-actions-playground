@@ -9,7 +9,18 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Generate message
+        id: gen_message
         run: |
+          message=`cat<<-EOT
+            こんにちは
+            おげんきですか。
+            ● これはリストです
+            <https://google.com|Google>
+          EOT`
+
+          echo 'message<<EOT' >> $GITHUB_ENV
+          echo "$message" >> $GITHUB_ENV
+          echo 'EOT' >> $GITHUB_ENV
           
       - name: Post text to a Slack channel
         uses: slackapi/slack-github-action@v2.1.1
@@ -19,7 +30,4 @@ jobs:
           payload: |
             channel: C04PGT140DD
             text: |
-              こんにちは
-              おげんきですか。
-              * これはリストです
-              <https://google.com|Google>
+            ${{ github.env.message}}
