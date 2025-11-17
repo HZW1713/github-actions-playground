@@ -18,9 +18,9 @@ jobs:
             <https://google.com|Google>
           EOT`
 
-          echo 'message<<EOT' >> $GITHUB_ENV
-          echo "$message" >> $GITHUB_ENV
-          echo 'EOT' >> $GITHUB_ENV
+          echo 'message<<EOT' >> $GITHUB_OUTPUT
+          echo "$message" >> $GITHUB_OUTPUT
+          echo 'EOT' >> $GITHUB_OUTPUT
           
       - name: Post text to a Slack channel
         uses: slackapi/slack-github-action@v2.1.1
@@ -30,4 +30,4 @@ jobs:
           payload: |
             channel: C04PGT140DD
             text: |
-            ${{ github.env.message}}
+            ${{ steps.gen_message.outputs.message }}
