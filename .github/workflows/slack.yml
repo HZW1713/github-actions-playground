@@ -11,7 +11,7 @@ jobs:
       - name: Generate message
         id: gen_message
         run: |
-          message=`cat<<-'EOT'
+          message=`cat<<'EOT'
             \`コードブロック\`
             こんにちは
             おげんきですか。
