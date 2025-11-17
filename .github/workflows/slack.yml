@@ -21,3 +21,4 @@ jobs:
             text: |
               こんにちは
               おげんきですか。
+              <https://google.com|Google>
