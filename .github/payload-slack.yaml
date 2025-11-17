@@ -1,9 +1,10 @@
-channel: C04PGT140DD
-text: |
-  \`コードブロック\`
-  こんにちは
-  おげんきですか。
-  ● これはリストです
-  <https://google.com|Google>
-  <@U04PGT12X1V>!
-  ${{ env.test }}
+payload:
+  channel: C04PGT140DD
+  text: |
+    \`コードブロック\`
+    こんにちは
+    おげんきですか。
+    ● これはリストです
+    <https://google.com|Google>
+    <@U04PGT12X1V>!
+    ${{ env.test }}
