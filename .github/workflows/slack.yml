@@ -31,5 +31,5 @@ jobs:
           token: ${{ secrets.SLACK_APP_SECRET }}
           payload: |
             channel: C04PGT140DD
-            text: |
+            markdown_text: |
             ${{ steps.gen_message.outputs.message }}
