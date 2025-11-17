@@ -33,6 +33,9 @@ jobs:
             channel: C04PGT140DD
             text: |
             ${{ steps.gen_message.outputs.message }}
+            
+      - name: Checkout repository
+        uses: actions/checkout@v5
 
       - name: Post text to a Slack channel by template
         uses: slackapi/slack-github-action@v2.1.1
