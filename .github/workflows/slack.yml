@@ -33,3 +33,13 @@ jobs:
             channel: C04PGT140DD
             text: |
             ${{ steps.gen_message.outputs.message }}
+
+      - name: Post text to a Slack channel by template
+        uses: slackapi/slack-github-action@v2.1.1
+        with:
+          method: chat.postMessage
+          token: ${{ secrets.SLACK_APP_SECRET }}
+          payload-file-path: .github/payload-slack.yaml
+          payload-templated: true
+        env:
+          test: test
