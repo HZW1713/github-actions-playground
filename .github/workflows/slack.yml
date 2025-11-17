@@ -17,6 +17,7 @@ jobs:
             おげんきですか。
             ● これはリストです
             <https://google.com|Google>
+            <@Ko>
           EOT`
 
           echo 'message<<EOT' >> $GITHUB_OUTPUT
