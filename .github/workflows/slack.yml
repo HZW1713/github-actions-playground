@@ -11,14 +11,14 @@ jobs:
       - name: Generate message
         id: gen_message
         run: |
-          message=`cat<<'EOT'
+          message=$(cat<<'EOT'
             \`コードブロック\`
             こんにちは
             おげんきですか。
             ● これはリストです
             <https://google.com|Google>
             <@U04PGT12X1V>!
-          EOT`
+          EOT)
 
           echo 'message<<EOT' >> $GITHUB_OUTPUT
           echo "$message" >> $GITHUB_OUTPUT
