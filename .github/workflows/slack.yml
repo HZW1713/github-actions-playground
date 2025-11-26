@@ -8,24 +8,47 @@ jobs:
   post_to_slack:
     runs-on: ubuntu-latest
     steps:
-      - name: Generate message
-        id: gen_message
-        run: |
-          message=$(cat<<EOT
-            \`コードブロック\`
-            こんにちは
-            おげんきですか。
-            ● これはリストです
-            <https://google.com|Google>
-            <@U04PGT12X1V>!
-          EOT
-          )
+      # - name: Generate message
+      #   id: gen_message
+      #   run: |
+      #     message=$(cat<<EOT
+      #       \`コードブロック\`
+      #       こんにちは
+      #       おげんきですか。
+      #       ● これはリストです
+      #       <https://google.com|Google>
+      #       <@U04PGT12X1V>!
+      #     EOT
+      #     )
 
-          echo "message<<EOT" >> $GITHUB_OUTPUT
-          echo "$message" >> $GITHUB_OUTPUT
-          echo "EOT" >> $GITHUB_OUTPUT
+      #     echo "message<<EOT" >> $GITHUB_OUTPUT
+      #     echo "$message" >> $GITHUB_OUTPUT
+      #     echo "EOT" >> $GITHUB_OUTPUT
           
-      - name: Post text to a Slack channel
+      # - name: Post text to a Slack channel
+      #   uses: slackapi/slack-github-action@v2.1.1
+      #   with:
+      #     method: chat.postMessage
+      #     token: ${{ secrets.SLACK_APP_SECRET }}
+      #     payload: |
+      #       channel: C04PGT140DD
+      #       text: |
+      #       ${{ steps.gen_message.outputs.message }}
+            
+      # - name: Checkout repository
+      #   uses: actions/checkout@v5
+
+      # - name: Post text to a Slack channel by template
+      #   uses: slackapi/slack-github-action@v2.1.1
+      #   with:
+      #     method: chat.postMessage
+      #     token: ${{ secrets.SLACK_APP_SECRET }}
+      #     payload-file-path: .github/payload-slack.yaml
+      #     payload-templated: true
+      #   env:
+      #     test: test
+
+      - name: Post text to a Slack channel by env
         uses: slackapi/slack-github-action@v2.1.1
         with:
           method: chat.postMessage
@@ -33,17 +56,12 @@ jobs:
           payload: |
             channel: C04PGT140DD
             text: |
-            ${{ steps.gen_message.outputs.message }}
-            
-      - name: Checkout repository
-        uses: actions/checkout@v5
-
-      - name: Post text to a Slack channel by template
-        uses: slackapi/slack-github-action@v2.1.1
-        with:
-          method: chat.postMessage
-          token: ${{ secrets.SLACK_APP_SECRET }}
-          payload-file-path: .github/payload-slack.yaml
-          payload-templated: true
+            ${{ env.test }}
         env:
-          test: test
+          test: |
+              \`コードブロック\`
+              こんにちは
+              おげんきですか。
+              ● これはリストです
+              <https://google.com|Google>
+              <@U04PGT12X1V>!
