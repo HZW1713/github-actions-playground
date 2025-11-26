@@ -58,7 +58,7 @@ jobs:
             text: |
             ${{ env.test }}
         env:
-          test: |-
+          test: |2
               \`コードブロック\`
               こんにちは
               おげんきですか。
