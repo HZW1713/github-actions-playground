@@ -76,6 +76,6 @@ jobs:
           token: ${{ secrets.SLACK_APP_SECRET }}
           payload: |
             channel: C04PGT140DD
-            thread_ts: "${{ steps.post_text.outputs.thread_ts }}"
+            thread_ts: "${{ steps.post_text.outputs.ts }}"
             text: |
             ${{ env.text }}
