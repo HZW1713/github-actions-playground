@@ -49,6 +49,7 @@ jobs:
       #     test: test
 
       - name: Post text to a Slack channel by env
+        id: post_text
         uses: slackapi/slack-github-action@v2.1.1
         with:
           method: chat.postMessage
@@ -65,3 +66,16 @@ jobs:
               ● これはリストです
               <https://google.com|Google>
               <@U04PGT12X1V>!
+      - name: Replay to the chat
+        uses: slackapi/slack-github-action@v2.1.1
+        env:
+          text: |2
+              これは返信です。
+        with:
+          method: chat.postMessage
+          token: ${{ secrets.SLACK_APP_SECRET }}
+          payload: |
+            channel: C04PGT140DD
+            thread_ts: "${{ steps.post_text.outputs.thread_ts }}"
+            text: |
+            ${{ env.text }}
